@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Receipt | Employee & Payroll System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body onload="initPayslipPage()">
+    <nav class="navbar">
+        <h1>TechCorp Payroll Management System</h1>
+        <div class="nav-links">
+            <a href="/dashboard.html">Dashboard</a>
+            <a href="/payslip.html" class="active">Payslip Generator</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 820px;">
+        <div id="payslipAlert" class="alert"></div>
+
+        <div class="card">
+            <h3>Multithreaded Byte-Stream Payslip Generator</h3>
+            <p class="subtitle" style="margin-top:0.25rem;">
+                Spawns a synchronized background <code>Thread</code> to write a <code>.txt</code> receipt using <code>FileOutputStream</code> and reads it back via <code>FileInputStream</code>.
+            </p>
+
+            <div style="display:flex; gap:0.75rem; align-items:flex-end; flex-wrap:wrap;">
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+                    <label>Select Employee</label>
+                    <select id="payslipEmpSelect" onchange="generateAndExportPayslip()"></select>
+                </div>
+                <button class="btn" onclick="generateAndExportPayslip()">Export via Thread & Byte Stream</button>
+                <button class="btn btn-success" onclick="downloadReceiptTxt()">Download .txt File</button>
+            </div>
+
+            <p id="savedFilePath" style="margin-top:0.9rem; font-size:0.85rem; color:#059669; font-weight:600;"></p>
+            <pre id="receiptOutput" class="receipt-box">Select an employee to generate their official payslip receipt...</pre>
+        </div>
+    </div>
+    <script src="/js/app.js"></script>
+</body>
+</html>

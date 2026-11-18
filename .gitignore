@@ -1,0 +1,25 @@
+# Build & Runtime artifacts
+target/
+lib/
+*.class
+*.jar
+*.war
+
+# Database & generated payslips
+payroll.db
+payroll.db-journal
+payslips/
+
+# Environment variables & secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Vercel & IDE / OS files
+.vercel/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+node_modules/

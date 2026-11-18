@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/src/main/resources/templates/auth/login.html" },
+    { "source": "/login", "destination": "/src/main/resources/templates/auth/login.html" },
+    { "source": "/login.html", "destination": "/src/main/resources/templates/auth/login.html" },
+    { "source": "/dashboard", "destination": "/src/main/resources/templates/admin/dashboard.html" },
+    { "source": "/dashboard.html", "destination": "/src/main/resources/templates/admin/dashboard.html" },
+    { "source": "/payslip", "destination": "/src/main/resources/templates/employee/payslip.html" },
+    { "source": "/payslip.html", "destination": "/src/main/resources/templates/employee/payslip.html" },
+    { "source": "/css/:file*", "destination": "/src/main/resources/static/css/:file*" },
+    { "source": "/js/:file*", "destination": "/src/main/resources/static/js/:file*" }
+  ]
+}

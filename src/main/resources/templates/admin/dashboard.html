@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Employee & Payroll System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body onload="loadEmployees()">
+    <nav class="navbar">
+        <h1>TechCorp Payroll Management System</h1>
+        <div class="nav-links">
+            <a href="/dashboard.html" class="active">Dashboard</a>
+            <a href="/payslip.html">Payslip Generator</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="dashAlert" class="alert"></div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Employees</div>
+                <div class="stat-value" id="statTotalEmp">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Full-Time Staff</div>
+                <div class="stat-value" id="statFullTime">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Part-Time Staff</div>
+                <div class="stat-value" id="statPartTime">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Monthly Net Disbursement</div>
+                <div class="stat-value" id="statTotalPayroll">Rs. 0.00</div>
+            </div>
+        </div>
+
+        <div class="grid-layout">
+            <div class="card">
+                <h3 id="formTitle" style="margin-bottom: 1rem;">Add New Employee</h3>
+                <form id="employeeForm" onsubmit="saveEmployee(event)">
+                    <input type="hidden" id="empId" value="0">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="empName" required placeholder="e.g. Ananya Rao">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="empEmail" required placeholder="ananya@techcorp.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Department Role</label>
+                        <select id="empRole">
+                            <option value="ENGINEERING">ENGINEERING (Engineering & R&D)</option>
+                            <option value="FINANCE">FINANCE (Finance & Accounts)</option>
+                            <option value="HR">HR (Human Resources)</option>
+                            <option value="MANAGEMENT">MANAGEMENT (Executive Management)</option>
+                            <option value="OPERATIONS">OPERATIONS (Operations & Support)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Employment Type (Polymorphic Subclass)</label>
+                        <select id="empType" onchange="toggleTypeFields()">
+                            <option value="FULL_TIME">FullTimeEmployee (Base + 20% HRA + Bonus - 10% Tax)</option>
+                            <option value="PART_TIME">PartTimeEmployee (Hourly Rate × Hours - 5% Tax)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="basePayLabel">Monthly Base Salary (Rs.)</label>
+                        <input type="number" step="0.01" id="empBasePay" required placeholder="60000">
+                    </div>
+                    <div class="form-group">
+                        <label id="extraLabel">Performance Bonus (Rs.)</label>
+                        <input type="number" step="0.01" id="empExtra" required placeholder="8000">
+                    </div>
+                    <div style="display:flex; gap:0.5rem;">
+                        <button type="submit" class="btn" style="flex:1;">Save Employee</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                    <h3>Employee Directory & Payroll Calculation</h3>
+                    <button class="btn btn-xs" onclick="loadEmployees()">Refresh</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee</th>
+                                <th>Role</th>
+                                <th>Type</th>
+                                <th>Base / Rate</th>
+                                <th>Bonus / Hrs</th>
+                                <th>Net Salary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/app.js"></script>
+</body>
+</html>
